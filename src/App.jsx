@@ -1,33 +1,43 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import List from './List'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [users, setUsers] = useState([{
+    name: 'Sela',
+    count: 0
+  }])
+
+  const addUser = () => {
+    let newUser = {
+      name: `Sela${Math.floor(Math.random() * 20)}`,
+      count: 0
+    }
+    setUsers([...users, newUser])
+  }
+
+  const handleCount = username => {
+    let temp = [...users]
+    let i = temp.findIndex(u => u.name == username)
+    if (!i)
+      return setUsers(temp)
+    temp[i].count += 1
+    setUsers(temp)
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {users.forEach(u => (
+        <>
+          <List
+            name={u.name}
+            count={u.count}
+            handleCount={handleCount}
+          ></List>
+        </>
+      ))}
+
+      <button onClick={addUser}>Add user!</button>
     </>
   )
 }
