@@ -2,8 +2,17 @@ import { useState } from 'react'
 import './App.css'
 import AddPost from './components/AddPost'
 import Posts from './components/Posts'
+// import { MongoClient, ServerApiVersion } from 'mongodb'
+// const uri = "mongodb+srv://Sela:Sela2001*@projectsdb.kvliqye.mongodb.net/?retryWrites=true&w=majority"
+// const client = new MongoClient(uri, {
+//   serverApi: {
+//     version: ServerApiVersion.v1,
+//     strict: true,
+//     deprecationErrors: true,
+//   }
+// })
 
-function App() {
+async function App() {
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')

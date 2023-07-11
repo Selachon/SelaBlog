@@ -1,8 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import babel from '@rollup/plugin-babel';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: '/Test/'
+  plugins: [react(), /*require('@babel/plugin-transform-runtime'),*/],
+  base: '/Test/',
+  build: {
+    rollupOptions: {
+      plugins: [
+        babel({
+          babelHelpers: 'bundled',
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        }),
+      ],
+    },
+  },
 })
