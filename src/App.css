@@ -1,3 +1,15 @@
-p {
+html {
+  background-color: rgb(194, 255, 233);
+}
+
+h1, h2, p {
   font-family: 'Poppins'
+}
+
+#author {
+  font-size: small;
+}
+
+#posted {
+  font-size: smaller;
 }
