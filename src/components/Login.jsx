@@ -1,12 +1,8 @@
 import { useState } from "react"
 import Error from "./Error"
-import mongoose from "mongoose"
-import User from "../Schemas/User.js"
 
 const Login = ({ users, setUsers, username, setUsername, password, setPassword, error, setError, setShowLogin }) => {
   const [errorMessage, setErrorMessage] = useState('')
-
-  console.log(mongoose)
 
   function logIn() {
     if (!username || !password) {
