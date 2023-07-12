@@ -39,7 +39,7 @@ const AddPost = ({
 
         <input className="bg-emerald-600 my-3 p-2 w-full rounded-lg text-white font-semibold hover:bg-emerald-500 transition-all cursor-pointer" type="button" id="post-post" value="Añadir" onClick={addPost} />
       </form>
-      {error && <Error/>}
+      {error && <Error errorMessage={'Debes llenar los campos de título y contenido'}/>}
     </div>
   )
 }

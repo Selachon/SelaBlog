@@ -4,7 +4,7 @@ import babel from '@rollup/plugin-babel';
 
 export default defineConfig({
   plugins: [react(), /*require('@babel/plugin-transform-runtime'),*/],
-  base: '/Test/',
+  base: '/SelaBlog/',
   build: {
     rollupOptions: {
       plugins: [
