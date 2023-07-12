@@ -522,6 +522,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -544,10 +548,6 @@ video {
   margin-bottom: 1rem;
 }
 
-.ml-12 {
-  margin-left: 3rem;
-}
-
 .ml-5 {
   margin-left: 1.25rem;
 }
@@ -564,8 +564,16 @@ video {
   margin-top: 3rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .block {
   display: block;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .w-auto {
