@@ -1,6 +1,6 @@
 import Post from "./Post"
 
-const Posts = ({ posts, setPosts }) => {
+const Posts = ({ posts }) => {
   let reversedPosts = [...posts]
   reversedPosts.reverse()
   const showPosts = reversedPosts.map((post) =>
