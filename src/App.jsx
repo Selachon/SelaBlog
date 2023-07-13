@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import AddPost from './components/AddPost'
 import Posts from './components/Posts'
 import Login from './components/Login'
 
 function App() {
-  const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [posts, setPosts] = useState([])
@@ -13,10 +12,17 @@ function App() {
   const [showLogin, setShowLogin] = useState(true)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [anon, setAnon] = useState(Boolean)
   const [users, setUsers] = useState([{
     username: 'Sela',
     password: 'Sela2001*',
   }])
+
+  useEffect(() => {
+    const ld = JSON.parse(localStorage.getItem('loginData'))
+    if (!ld) return
+    setShowLogin(ld.showLogin)
+  }, [])
 
   return (
     <div>
@@ -40,8 +46,6 @@ function App() {
       ) : (
         <div id="blog" className='mt-12 ml-5 md:flex transition-all'>
           <AddPost
-            name={name}
-            setName={setName}
             title={title}
             setTitle={setTitle}
             content={content}
@@ -50,6 +54,8 @@ function App() {
             setPosts={setPosts}
             error={error}
             setError={setError}
+            anon={anon}
+            setAnon={setAnon}
           />
           <Posts
             posts={posts}

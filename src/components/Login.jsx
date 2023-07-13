@@ -1,30 +1,44 @@
 import { useState } from "react"
 import Error from "./Error"
 
-const Login = ({ users, setUsers, username, setUsername, password, setPassword, error, setError, setShowLogin }) => {
+const Login = ({ users, setUsers, username, setUsername, password, setPassword, error, setError, setShowLogin, name, setName }) => {
   const [errorMessage, setErrorMessage] = useState('')
 
   function logIn() {
-    if (!username || !password) {
-      setErrorMessage('Debes llenar ambos campos')
-      return setError(true)
-    }
-    const usersCopy = [...users]
-    const validUser = usersCopy.find(user => user.username == username)
-    if (!validUser) {
-      setErrorMessage('Usuario no encontrado')
-      return setError(true)
-    }
-    const validLogin = usersCopy.find(user => user.username == username && user.password == password)
-    if (!validLogin) {
-      setErrorMessage('Clave incorrecta')
-      return setError(true)
+    const lD = localStorage.getItem('loginData')
+    const loginData = JSON.parse(lD)
+    if (!loginData) {
+      if (!username || !password) {
+        setErrorMessage('Debes llenar ambos campos')
+        return setError(true)
+      }
+      const usersCopy = [...users]
+      const validUser = usersCopy.find(user => user.username == username)
+      if (!validUser) {
+        setErrorMessage('Usuario no encontrado')
+        return setError(true)
+      }
+      const validLogin = usersCopy.find(user => user.username == username && user.password == password)
+      if (!validLogin) {
+        setErrorMessage('Clave incorrecta')
+        return setError(true)
+      }
+      localStorage.setItem('loginData', JSON.stringify({
+        showLogin: false,
+        name: username
+      }))
+      setError(false)
+      setErrorMessage('')
+      setUsername('')
+      setPassword('')
+      setShowLogin(JSON.parse(localStorage.getItem('loginData')).showLogin)
+      return
     }
     setError(false)
     setErrorMessage('')
     setUsername('')
     setPassword('')
-    setShowLogin(false)
+    setShowLogin(JSON.parse(localStorage.getItem('loginData')).showLogin)
   }
 
   return (
